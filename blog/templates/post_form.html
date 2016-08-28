@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+.jumbotron{
+  background-color: #f2dede;
+}
+</style>
+{% include "nav.html"%}
+<div class="row">
+  <div class="col-sm-6">
+    <div class="container">
+
+<div class ="jumbotron">
+
+  <h1>create post</h1><br>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="POST">
+  </form>
+</div>
+</div>
+</div>
+</div>
+  {%endblock content%}

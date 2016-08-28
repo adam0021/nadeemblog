@@ -1,0 +1,23 @@
+{%load staticfiles%}
+<head>
+  <link rel='stylesheet' href={% static 'css/bootstrap.min.css'%}/>
+</head>
+<body>
+
+  <h1>BLOG</h1><br>
+
+  {%for object in queryset%}
+    <div class="container">
+      <div class="jumbotron">
+  /posts/id/
+  {%url "detail" id=object.id %}
+  <h2>{{object.id}}--<a href="{{object.get_absolute_url}}">{{object.title}}</a></h2><br>
+  <p><strong>{{object.timestamp}}------Last updated on  >>  {{object.updated}}</strong></p>
+  <hr>
+  <p>{{object.content}}</p>
+
+</div>
+</div>
+  {%endfor%}
+
+</body>

@@ -1,0 +1,61 @@
+
+
+{% extends "base.html" %}
+{% block content%}
+  {% include 'nav.html'%}
+<div class="container">
+  <div class="row" >
+   <div class="col-sm-12 ">
+
+<div class ="jumbotron">
+  <h2>YOUR BLOG</h2><br>
+  {%if instance.image%}
+
+  <img src='{{instance.image.url}}' height='200' width='200' class='img-responsive'/>
+  {%endif%}
+
+
+  <h3>{{instance.id}}--{{instance.title}}</h3><br>
+  <p><strong>{{instance.timestamp}}------Last updated on>>{{instance.updated}}</strong></p>
+  <hr>
+  <div class="p1">{{instance.content}}</div>
+  <hr>
+  <p><a href="{%url 'delete' instance.id %}" class="btn btn-primary" role="button">DELETE</a>     <a href="{%url 'update' instance.id %}" class="btn btn-primary" role="button">EDIT</a></p>
+
+    <a class="btn btn-default" href="{%url 'add_comment' instance.id %}">Add Comment</a>
+
+
+
+
+
+
+</div>
+  </div>
+  </div>
+  </div>
+<hr>
+<hr>
+<br>
+<h1>COMMENTS</h1>
+
+  {%for c in instance.comments.all%}
+<div class="container">
+  <div class="row">
+       <div class="col-sm-6 col-sm-offset-2">
+<div class="jumbotron" >
+  <p>{{c.created_date}}</p>
+
+        <p>{{c.text}}</p>
+  </div>
+  </div>
+    </div>
+  </div>
+        {%endfor%}
+  <!--{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %} -->
+  {%endblock content %}
